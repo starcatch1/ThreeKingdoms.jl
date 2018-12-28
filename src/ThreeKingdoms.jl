@@ -1,5 +1,5 @@
 module ThreeKingdoms
 
-greet() = print("Hello World!")
+include("人名錄.jl")
 
-end # module
+end # module ThreeKingdoms

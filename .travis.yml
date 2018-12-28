@@ -20,3 +20,4 @@ script:
   - julia --version
   - julia --color=yes --project=. -e 'using Pkg; pkg"add ExcelReaders"'
   - julia --color=yes --project=. ./games/nexonjojo/finder.jl
+  - julia --color=yes --project=. 'using Pkg; Pkg.test()'
