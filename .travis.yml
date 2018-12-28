@@ -1,0 +1,22 @@
+# Documentation: http://docs.travis-ci.com/user/languages/julia/
+notifications:
+  email: false
+
+language: julia
+
+julia:
+  - nightly
+
+addons:
+  apt:
+    packages:
+      - "python3"
+      - "python3-pip"
+
+sudo: true
+
+script:
+  - sudo pip3 install xlrd
+  - julia --version
+  - julia --color=yes --project=. -e 'using Pkg; pkg"add ExcelReaders"'
+  - julia --color=yes --project=. ./games/nexonjojo/finder.jl

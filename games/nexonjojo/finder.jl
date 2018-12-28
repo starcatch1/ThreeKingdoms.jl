@@ -1,4 +1,4 @@
-if VERSION < v"1.2-DEV"
+if VERSION < v"1.2.0-DEV"
     @warn "Julia 1.2 버전이 필요합니다"
     @warn "다운로드: https://julialang.org/downloads/nightlies.html"
 end
@@ -175,7 +175,7 @@ end
 
 
 # filename = "조조전온라인 태수정리 made by BJ비비앙.xlsx"
-filename = "jojo.xlsx"
+filename = normpath(@__DIR__, "jojo.xlsx")
 (장수들, 도시들) = 로드(filename)
 
 크기순_점령한_도시들 = sort(filter(점령한, 도시들), lt=크기순으로)
