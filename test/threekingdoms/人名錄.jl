@@ -7,7 +7,7 @@ using Test
 @test 人名錄.賈詡.이름 == "가후"
 
 JiaXu = findfirst(人名錄.登場人物) do 인물
-    인물.이름== "가후"
+    인물.이름 == "가후"
 end
 @test JiaXu == "賈詡"
 
