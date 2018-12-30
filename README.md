@@ -4,7 +4,12 @@
 |:---------------------------------------------------------------:|
 |  [![][travis-img]][travis-url]  [![][codecov-img]][codecov-url] |
 
+```julia
+using Pkg
+pkg"add https://github.com/wookay/ThreeKingdoms.jl.git"
 ```
+
+```julia
 julia> using ThreeKingdoms: 人名錄
 
 julia> findfirst(人名錄.登場人物) do 인물
