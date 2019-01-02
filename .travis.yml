@@ -18,7 +18,9 @@ sudo: true
 script:
   - sudo pip3 install xlrd
   - julia --version
-  - julia --color=yes --project=. -e 'using Pkg; pkg"add ExcelReaders"'
+  - julia --color=yes -e 'using Pkg; pkg"add ExcelReaders Millboard"'
+  - julia --color=yes -e 'using Pkg; pkg"add https://github.com/wookay/Jive.jl.git"'
+  - julia --color=yes -e 'using Pkg; pkg"add https://github.com/wookay/Lupin.jl.git"'
   - julia --color=yes --project=. ./games/nexonjojo/finder.jl
   - julia --color=yes --project=. -e 'using Pkg; Pkg.test()'
 

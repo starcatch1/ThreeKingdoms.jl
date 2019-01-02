@@ -13,7 +13,6 @@ if ExcelReaders.xlrd == ExcelReaders.PyNULL()
     @warn "예) pip3 install xlrd"
 end
 
-
 struct 도시타입
     이름::String
     은전시설::String
@@ -105,6 +104,10 @@ function 크기순으로(x::도시타입, y::도시타입)
     indexin([x.크기], 도시크기) > indexin([y.크기], 도시크기)
 end # function 크기순으로
 
+function 이름순으로(x::장수타입, y::장수타입)
+    x.이름 < y.이름
+end
+
 function 계보순으로(x::장수타입, y::장수타입)
     모든계보 = split("""
 난세간웅의 패
@@ -181,9 +184,27 @@ filename = normpath(@__DIR__, "jojo.xlsx")
 크기순_점령한_도시들 = sort(filter(점령한, 도시들), lt=크기순으로)
 등용한_장수들 = filter(등용한, 장수들)
 등용안한_장수들 = sort(filter(!등용한, 장수들), lt=계보순으로)
+(후보군, 장수풀) = nominate_viceroys(크기순_점령한_도시들, 등용한_장수들)
+배치안한_장수들 = filter(장수 -> !in(장수.이름, values(후보군)), 등용한_장수들)
 
 
-은전용_태수찾기(크기순_점령한_도시들, 등용한_장수들)
-장수찾기(등용안한_장수들) do 장수
-    장수.태수효과 == "제재소"
+빼고(장수) = 장수.이름 in split("조운 이명 장비 위연")
+은전용_태수찾기(크기순_점령한_도시들, filter(!빼고, 등용한_장수들))
+
+using Jive
+@skip 장수찾기(등용안한_장수들) do 장수
+    장수.태수효과 in ("시장",)
 end
+
+using Lupin # partition
+using Millboard # table
+
+@info :배치안한_장수들
+println(table(partition(map(장수 -> 장수.이름, sort(배치안한_장수들, lt=이름순으로)), cols=8, fill="")))
+
+
+using ThreeKingdoms: 人名錄
+ZhugeLiang = findfirst(人名錄.登場人物) do 인물
+    인물.이름 == "제갈량"
+end
+@info 人名錄.登場人物[ZhugeLiang]
