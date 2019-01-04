@@ -1,5 +1,5 @@
-if VERSION < v"1.2.0-DEV"
-    @warn "Julia 1.2 버전이 필요합니다"
+if VERSION < v"1.1.0-DEV"
+    @warn "Julia 1.1 버전이 필요합니다"
     @warn "다운로드: https://julialang.org/downloads/nightlies.html"
 end
 
