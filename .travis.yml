@@ -5,7 +5,7 @@ notifications:
 language: julia
 
 julia:
-  - nightly
+  - 1.1
 
 addons:
   apt:
@@ -24,7 +24,7 @@ script:
   - julia --color=yes --project=. -e 'using Pkg; Pkg.test()'
 
 after_success:
-  - if [[ "$TRAVIS_OS_NAME" == linux && "$TRAVIS_JULIA_VERSION" == nightly ]] ; then julia --project=. -e 'using Pkg;
-                                                                                                           Pkg.add("Coverage");
-                                                                                                           using Coverage;
-                                                                                                           Codecov.submit(process_folder())' ; fi
+  - if [[ "$TRAVIS_OS_NAME" == linux && "$TRAVIS_JULIA_VERSION" == 1.1 ]] ; then julia --project=. -e 'using Pkg;
+                                                                                                       Pkg.add("Coverage");
+                                                                                                       using Coverage;
+                                                                                                       Codecov.submit(process_folder())' ; fi
