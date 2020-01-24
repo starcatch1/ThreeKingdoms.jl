@@ -16,4 +16,6 @@ ZhaoYun = findfirst(人名錄.登場人物) do 인물
 end
 @test ZhaoYun == "趙雲"
 
+@test 人名錄.關羽.字 == "雲長"
+
 end # module test_threekingdoms_人名錄
